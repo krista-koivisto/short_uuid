@@ -1,4 +1,4 @@
-import 'package:short_uuid/short_uuid.dart';
+import 'package:short_uuids/short_uuids.dart';
 import 'package:test/test.dart';
 
 void main() {

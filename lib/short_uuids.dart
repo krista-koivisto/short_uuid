@@ -14,11 +14,9 @@ class PaddingParams {
   final paddingChar;
   const PaddingParams({
     this.consistentLength = true,
-    this.shortIdLength,
+    required this.shortIdLength,
     this.paddingChar = '0',
-  }) : assert(consistentLength != null),
-       assert(shortIdLength != null),
-       assert(paddingChar != null);
+  });
 }
 
 class Convertor {
@@ -28,12 +26,12 @@ class Convertor {
   final Translator toUUID;
   final String alphabet;
   const Convertor({
-    this.generate, this.uuid, this.fromUUID, this.toUUID, this.alphabet
-  })  : assert(generate != null),
-        assert(uuid != null),
-        assert(fromUUID != null),
-        assert(toUUID != null),
-        assert(alphabet != null);
+    required this.generate,
+    required this.uuid,
+    required this.fromUUID,
+    required this.toUUID,
+    required this.alphabet
+  });
 }
 
 class _Constants {
@@ -47,13 +45,13 @@ class ShortUuid {
   static final uuidV4 = Uuid().v4;
 
   // A default generator, instantiated only if used.
-  static Convertor _toFlickr;
+  static Convertor? _toFlickr;
 
   // Expose the UUIDv4 generator.
   static String Function({Map<String, dynamic> options}) get uuid => uuidV4;
 
   /// Initialize the default translator.
-  static Convertor init([String toAlphabet, PaddingParams options]) =>
+  static Convertor init([String? toAlphabet, PaddingParams? options]) =>
       makeConvertor(toAlphabet, options);
 
   const ShortUuid();
@@ -66,7 +64,7 @@ class ShortUuid {
   /// Adds padding in front of the resulting short form if [paddingParams] has
   /// `consistentLength` set to true.
   static String shortenUUID(String longId, Translator translator,
-      [PaddingParams paddingParams]) {
+      [PaddingParams? paddingParams]) {
     final translated = translator(longId.toLowerCase().replaceAll('-', ''));
 
     if (paddingParams == null || !paddingParams.consistentLength)
@@ -90,7 +88,7 @@ class ShortUuid {
     final m = RegExp(r'(\w{8})(\w{4})(\w{4})(\w{4})(\w{12})').firstMatch(uu1);
 
     // Accumulate the matches and join them.
-    return [m[1], m[2], m[3], m[4], m[5]].join('-');
+    return [m![1], m[2], m[3], m[4], m[5]].join('-');
   }
 
   /// Calculate the length of the shortened id.
@@ -98,7 +96,7 @@ class ShortUuid {
       (log(pow(2.0, 128.0)) / log(alphabetLength.toDouble())).ceil();
 
   /// Create a custom convertor using a specified alphabet.
-  static Convertor makeConvertor([String toAlphabet, PaddingParams options]) {
+  static Convertor makeConvertor([String? toAlphabet, PaddingParams? options]) {
     // Default to Flickr 58
     final useAlphabet = toAlphabet ?? constants.flickrBase58;
 
@@ -135,6 +133,6 @@ class ShortUuid {
       // Generate on first use;
       _toFlickr = makeConvertor(constants.flickrBase58);
     }
-    return shortenUUID(uuid(), _toFlickr.fromUUID);
+    return shortenUUID(uuid(), _toFlickr!.fromUUID);
   }
 }

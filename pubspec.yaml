@@ -1,14 +1,14 @@
-name: short_uuid
+name: short_uuids
 description: Generate short UUIDs or translate standard UUIDs into shorter formats and back.
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/krista-koivisto/short_uuid
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  any_base: ^1.0.0
-  uuid: ^2.2.2
+  any_base: ^2.0.0
+  uuid: ^3.0.4
 
 dev_dependencies:
-  test: ^1.15.3
+  test: ^1.17.5
