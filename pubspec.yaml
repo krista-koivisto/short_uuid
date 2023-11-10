@@ -4,11 +4,11 @@ version: 2.0.0
 homepage: https://github.com/krista-koivisto/short_uuid
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
 
 dependencies:
   any_base: ^2.0.0
-  uuid: ^3.0.4
+  uuid: ^4.2.1
 
 dev_dependencies:
   test: ^1.17.5
