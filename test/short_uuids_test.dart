@@ -11,10 +11,12 @@ void main() {
   });
   test('translates to shortened format', () {
     final translator = ShortUuid.init();
-    expect(translator.toUUID('mhvXdrZT4jP5T8vBxuvm75'), 'a44521d0-0fb8-4ade-8002-3385545c3318');
+    expect(translator.toUUID('mhvXdrZT4jP5T8vBxuvm75'),
+        'a44521d0-0fb8-4ade-8002-3385545c3318');
   });
   test('translates from shortened format', () {
     final translator = ShortUuid.init();
-    expect(translator.fromUUID('a44521d0-0fb8-4ade-8002-3385545c3318'), 'mhvXdrZT4jP5T8vBxuvm75');
+    expect(translator.fromUUID('a44521d0-0fb8-4ade-8002-3385545c3318'),
+        'mhvXdrZT4jP5T8vBxuvm75');
   });
 }

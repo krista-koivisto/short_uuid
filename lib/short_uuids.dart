@@ -25,18 +25,19 @@ class Convertor {
   final Translator fromUUID;
   final Translator toUUID;
   final String alphabet;
-  const Convertor({
-    required this.generate,
-    required this.uuid,
-    required this.fromUUID,
-    required this.toUUID,
-    required this.alphabet
-  });
+  const Convertor(
+      {required this.generate,
+      required this.uuid,
+      required this.fromUUID,
+      required this.toUUID,
+      required this.alphabet});
 }
 
 class _Constants {
-  final flickrBase58 = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
-  final cookieBase90 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#\$%&'()*+-./:<=>?@[]^_`{|}~";
+  final flickrBase58 =
+      '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+  final cookieBase90 =
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#\$%&'()*+-./:<=>?@[]^_`{|}~";
   const _Constants();
 }
 
@@ -101,10 +102,11 @@ class ShortUuid {
     final useAlphabet = toAlphabet ?? constants.flickrBase58;
 
     // Default to baseOptions
-    final selectedOptions = options ?? PaddingParams(
-      shortIdLength: getShortIdLength(useAlphabet.length),
-      paddingChar: useAlphabet[0],
-    );
+    final selectedOptions = options ??
+        PaddingParams(
+          shortIdLength: getShortIdLength(useAlphabet.length),
+          paddingChar: useAlphabet[0],
+        );
 
     // Check alphabet for duplicate entries
     if (Set.from(useAlphabet.split('')).length != useAlphabet.length) {
